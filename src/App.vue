@@ -25,9 +25,9 @@
 <script>
 const emptyValue = '&nbsp'
 const data = () => ({
-  table: Array(4).fill(
-    Array(4).fill(emptyValue)
-  )
+  table: Array(4).fill(undefined).map(() => {
+    return Array(4).fill(undefined).map(() => emptyValue)
+  })
 })
 export default {
   data,
@@ -39,7 +39,7 @@ export default {
       this.table.push(Array(columns).fill(emptyValue))
     },
     addColumn () {
-      this.table[0].push(emptyValue)
+      this.table.forEach(row => row.push(emptyValue))
     }
   }
 }

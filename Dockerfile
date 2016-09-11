@@ -5,9 +5,6 @@ WORKDIR /src
 RUN cd /src
 # Copy just the package.json file file as a cache step.
 COPY package.json /src/package.json
-
-# Maybe this will disable colors in npm warnings?
-ENV TERM=xterm
 # Disable progress so npm would install faster.
 # Disable colors, because Dockerhub can't display them.
 # Install NPM packages excluding the dev dependencies.

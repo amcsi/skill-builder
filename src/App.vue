@@ -1,6 +1,10 @@
 <template>
   <div id="main" class="skillgrid">
 
+    <div>
+      <button type="button" @click="createElement()">Create element</button>
+    </div>
+
     <div class="rowAddButtons">
       <button type="button" @click="prependRow()">+</button>
     </div>
@@ -28,11 +32,13 @@
 
 <script>
   import grid from './components/Grid.vue'
+  import Element from './Element'
+  import randomColor from './util/randomColor'
 
-  const emptyValue = '&nbsp'
+  const createEmptyValue = () => []
   const data = () => ({
     table: Array(4).fill(undefined).map(() => {
-      return Array(4).fill(undefined).map(() => emptyValue)
+      return Array(4).fill(undefined).map(() => createEmptyValue())
     })
   })
   export default {
@@ -43,7 +49,7 @@
         const columns = this.table.length
           ? this.table[0].length
           : 0
-        return Array(columns).fill(emptyValue)
+        return Array(columns).fill(createEmptyValue())
       }
     },
     methods: {
@@ -54,10 +60,18 @@
         this.table.push(this.createRow())
       },
       prependColumn () {
-        this.table.forEach(row => row.unshift(emptyValue))
+        this.table.forEach(row => row.unshift(createEmptyValue()))
       },
       addColumn () {
-        this.table.forEach(row => row.push(emptyValue))
+        this.table.forEach(row => row.push(createEmptyValue()))
+      },
+      createElement () {
+        if (this.table.length) {
+          const row = this.table[0]
+          if (row.length) {
+            row[0].push(new Element(randomColor()))
+          }
+        }
       }
     }
   }

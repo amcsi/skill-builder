@@ -12,4 +12,7 @@ RUN npm set progress=false && npm set color=false && npm --no-color -q install
 
 COPY . .
 RUN npm --no-color -q run build
+# Needed for nginx-proxy
+EXPOSE 8080
+
 CMD ["npm", "run", "start"]

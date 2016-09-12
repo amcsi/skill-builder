@@ -49,7 +49,7 @@
         const columns = this.table.length
           ? this.table[0].length
           : 0
-        return Array(columns).fill(createEmptyValue())
+        return Array(columns).fill(null).map(() => createEmptyValue())
       }
     },
     methods: {

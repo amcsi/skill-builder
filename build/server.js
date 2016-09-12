@@ -4,9 +4,22 @@ const path = require('path')
 
 const app = express();
 const publicPath = path.join(__dirname, '..', 'dist')
+/**
+ * @param {express.res} res
+ * @param {String} path
+ */
+function setCustomCacheControl(res, path) {
+  if (path.endsWith('.html')) {
+    // Custom Cache-Control for HTML files.
+    res.setHeader('Cache-Control', 'public, max-age=0')
+  }
+}
+
 const staticMiddleware = express.static(publicPath, {
   maxage: 31557600,
+  setHeaders: setCustomCacheControl
 });
+
 function notFoundMiddleware(req, resp) {
   resp.status(404).send('404 Not Found')
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="element" style="{{ 'background-color:#' + element.getColor() }}">
+  <div class="element" v-bind:style="{ backgroundColor: '#' + element.getColor() }">
 
   </div>
 </template>
@@ -16,5 +16,6 @@
   .element {
     width: 50px;
     height: 50px;
+    cursor: move;
   }
 </style>

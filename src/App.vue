@@ -86,6 +86,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   height: 100%;
 }
 
@@ -106,18 +107,6 @@ body {
   width: 100px;
   height: 100px
 }
-
-  .skillgrid {
-    table-layout: fixed;
-    border-collapse: collapse;
-  }
-
-  .skillgrid__td {
-    border: 1px solid grey;
-    padding: 5px;
-    width: 50px;
-    height: 50px;
-  }
 
 .skillgrid__middle {
   display: flex;

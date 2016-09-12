@@ -1,48 +1,66 @@
 <template>
-  <div id="main">
-    <div>
-      Rows:
+  <div id="main" class="skillgrid">
+
+    <div class="rowAddButtons">
+      <button type="button" @click="prependRow()">+</button>
+    </div>
+
+    <div class="skillgrid__middle">
+      <div>
+        <button type="button" @click="prependColumn()">+</button>
+      </div>
+
+      <div class="rowAddButtons">
+        <grid :table="table"></grid>
+      </div>
+
+      <div>
+        <button type="button" @click="addColumn()">+</button>
+      </div>
+    </div>
+
+    <div class="rowAddButtons">
       <button type="button" @click="addRow()">+</button>
     </div>
 
-    <div>
-      Columns:
-      <button type="button" @click="addColumn()">+</button>
-
-    </div>
-    <div>
-      <table class="skillgrid">
-        <tr v-for="i in table" track-by="$index">
-          <td v-for="j in i" track-by="$index" class="skillgrid__td">
-            &nbsp;
-          </td>
-        </tr>
-      </table>
-    </div>
   </div>
 </template>
 
 <script>
-const emptyValue = '&nbsp'
-const data = () => ({
-  table: Array(4).fill(undefined).map(() => {
-    return Array(4).fill(undefined).map(() => emptyValue)
+  import grid from './components/Grid.vue'
+
+  const emptyValue = '&nbsp'
+  const data = () => ({
+    table: Array(4).fill(undefined).map(() => {
+      return Array(4).fill(undefined).map(() => emptyValue)
+    })
   })
-})
-export default {
-  data,
-  methods: {
-    addRow () {
-      const columns = this.table.length
-        ? this.table[0].length
-        : 0
-      this.table.push(Array(columns).fill(emptyValue))
+  export default {
+    data,
+    components: { grid },
+    created () {
+      this.createRow = () => {
+        const columns = this.table.length
+          ? this.table[0].length
+          : 0
+        return Array(columns).fill(emptyValue)
+      }
     },
-    addColumn () {
-      this.table.forEach(row => row.push(emptyValue))
+    methods: {
+      prependRow () {
+        this.table.unshift(this.createRow())
+      },
+      addRow () {
+        this.table.push(this.createRow())
+      },
+      prependColumn () {
+        this.table.forEach(row => row.unshift(emptyValue))
+      },
+      addColumn () {
+        this.table.forEach(row => row.push(emptyValue))
+      }
     }
   }
-}
 </script>
 
 <style>
@@ -85,5 +103,14 @@ body {
     padding: 5px;
     width: 50px;
     height: 50px;
+  }
+
+.skillgrid__middle {
+  display: flex;
+  align-items: center;
+}
+
+  .rowAddButtons {
+    text-align: center;
   }
 </style>

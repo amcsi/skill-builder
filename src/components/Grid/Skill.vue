@@ -5,7 +5,7 @@
 </template>
 <script>
   import ElementClass from '../../Element'
-  /** @class Element */
+  /** @class Skill */
   export default {
     props: {
       element: ElementClass

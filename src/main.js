@@ -7,6 +7,9 @@ Vue.use(VueDragula)
 
 /* eslint-disable no-new */
 new Vue({
-  el: 'body',
+  el: '#app',
+  render (h) {
+    return h(App)
+  },
   components: { App }
 })

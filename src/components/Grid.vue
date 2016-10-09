@@ -1,8 +1,8 @@
 <template>
   <table class="skillgrid">
     <tr v-for="(row, index) in table">
-      <td v-for="elements in row" class="skillgrid__td">
-        <div v-for="element in elements">
+      <td v-for="cell in row" class="skillgrid__td">
+        <div v-for="element in cell.elements">
           <skill :element="element"></skill>
         </div>
       </td>

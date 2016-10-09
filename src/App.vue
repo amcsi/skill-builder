@@ -35,7 +35,7 @@
   import Element from './Element'
   import randomColor from './util/randomColor'
 
-  const createEmptyValue = () => []
+  const createEmptyValue = () => ({elements: []})
   const data = () => ({
     table: Array(4).fill(undefined).map(() => {
       return Array(4).fill(undefined).map(() => createEmptyValue())
@@ -69,7 +69,7 @@
         if (this.table.length) {
           const row = this.table[0]
           if (row.length) {
-            row[0].push(new Element(randomColor()))
+            row[0].elements.push(new Element(randomColor()))
           }
         }
       }

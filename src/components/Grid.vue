@@ -1,7 +1,7 @@
 <template>
   <table class="skillgrid">
-    <tr v-for="(row, index) in table">
-      <td v-for="cell in row" class="skillgrid__td" v-dragula="cell.elements" bag="cell">
+    <tr v-for="(row, index) in localTable">
+      <td v-for="cell in row" class="skillgrid__td" v-dragula="table[index].elements" bag="cell">
         <div v-for="element in cell.elements">
           <skill :element="element"></skill>
         </div>
@@ -19,6 +19,7 @@
     },
     data () {
       return {
+        localTable: this.table,
         msg: 'hello vue'
       }
     }
